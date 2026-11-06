@@ -1,112 +1,112 @@
-# **PitWallAnalytics** 
+# **PitWall Analytics**
 
-Pontificia Universidad Javeriana _·_ Visualización de Datos _·_ Mayo 2026 _|_ Sara Sofía Robayo Negrete
+Pontificia Universidad Javeriana _·_ Data Visualization _·_ May 2026 _|_ Sara Sofía Robayo Negrete
 
-**1.125 mil 861 212 75 42,3 % 22,1 %** Carreras analizadas Pilotos únicos Constructores Temporadas (1950–2024) Tasa Pole _→_ Victoria Tasa falla mecánica 
+**1,125 thousand 861 212 75 42.3% 22.1%**
 
-## **1.125 mil** 
+Races Analyzed · Unique Drivers · Constructors · Seasons (1950–2024) · Pole _→_ Win Conversion Rate · Mechanical Failure Rate
 
-### **Hallazgos Principales** 
+## **1,125 thousand**
 
-### **Conclusiones** 
+### **Key Findings**
 
-- **Ferrari lidera el ranking histórico** con más de 240 victorias, seguido por McLaren (182) y Mercedes (125). El gráfico de áreas evidencia ciclos claros de dominancia: Ferrari en los 2000s, Red Bull entre 2010–2013 y Mercedes en 2014–2021. 
+### **Conclusions**
 
-- **La pole position es ventajosa pero no decisiva.** La tasa de conversión pole _→_ victoria es del 42,3 %; en más del 57 % de las carreras, el ganador salió desde la segunda posición o más atrás, lo que subraya el peso determinante de la estrategia de carrera. 
+- **Ferrari leads the all-time rankings** with more than 240 victories, followed by McLaren (182) and Mercedes (125). The area chart reveals clear dominance cycles: Ferrari in the 2000s, Red Bull between 2010–2013, and Mercedes between 2014–2021.
 
-- **Mónaco y Phoenix: menor índice de remontada** con valores negativos de hasta _−_ 8 posiciones en promedio. En trazados urbanos estrechos la posición de salida es prácticamente definitoria del resultado final. 
+- **Pole position is advantageous but not decisive.** The pole _→_ win conversion rate is 42.3%; in more than 57% of races, the winner started from second position or further back, highlighting the decisive role of race strategy.
 
-- **22,1 % de falla mecánica histórica.** Refleja la evolución tecnológica del deporte: la tasa de abandono mecánico en los años 50–70 superaba el 50 %, mientras que en la era moderna se ubica por debajo del 10 %. 
+- **Monaco and Phoenix have the lowest comeback index**, with negative values of up to _−_ 8 positions on average. On narrow street circuits, starting position is practically decisive in determining the final result.
 
-- **Pilotos británicos lideran en victorias por nacionalidad** con más de 300 triunfos históricos, seguidos por alemanes (214) y brasileños (101), confirmando al Reino Unido como la cuna de la Fórmula 1. 
+- **Historical mechanical failure rate: 22.1%.** This reflects the sport's technological evolution: mechanical retirement rates in the 1950s–1970s exceeded 50%, while in the modern era they are below 10%.
 
-- **Monza: el circuito más democrático** con _≈_ 40 pilotos distintos ganadores en su historia. Contrasta con circuitos modernos donde la dominancia de un equipo reduce severamente la diversidad de ganadores. 
+- **British drivers lead in victories by nationality**, with more than 300 historical wins, followed by German drivers (214) and Brazilian drivers (101), confirming the United Kingdom's historical importance in Formula 1.
 
-- **Fuente de datos robusta y relacional.** El dataset _Formula 1 World Championship (1950–2024)_ de Kaggle, con 14 archivos CSV vinculados por claves primarias y foráneas, constituyó una base sólida para construir un modelo de BI de alta complejidad. 
+- **Monza is the most diverse circuit in terms of winners**, with approximately 40 different drivers having won there throughout its history. This contrasts with modern circuits where team dominance significantly reduces winner diversity.
 
-- **Esquema en Estrella eficiente.** Con `results` como tabla de hechos y cuatro dimensiones ( `drivers` , `constructors` , `races` , `circuits` ), el modelo resolvió los cinco objetivos de visualización, incluyendo los dos de fuentes cruzadas (Obj. 3 y 5). 
+- **A robust, relational data source.** The _Formula 1 World Championship (1950–2024)_ dataset from Kaggle, containing 14 CSV files linked through primary and foreign keys, provided a solid foundation for building a sophisticated BI model.
 
-- **Ingeniería de características determinante.** Las columnas _Finalizo_ , _Falla Mecánica_ , _Accidente_ y _RemontadaF_ , más las medidas DAX especializadas, habilitaron visualizaciones imposibles de construir directamente con los datos crudos. 
+- **An efficient star schema.** With `results` as the fact table and four dimensions (`drivers`, `constructors`, `races`, `circuits`), the model addressed all five visualization objectives, including the two involving multiple data sources (Objectives 3 and 5).
 
-- **Estrategia de carrera tan relevante como la clasificación.** El hallazgo del 57,7 % de victorias sin pole implica que los equipos cliente deben equilibrar inversión en rendimiento de clasificación con planificación de estrategia de pit stops. 
+- **Feature engineering was essential.** The columns _Finalizo_, _Falla Mecánica_, _Accidente_, and _RemontadaF_, together with specialized DAX measures, enabled visualizations that could not have been built directly from the raw data.
 
-- **Alta satisfacción en validación con usuarios:** 4,6/5 en claridad, 4,8/5 en diseño visual y 100 % de recomendación. Ajuste posterior: reducción de densidad visual en páginas multi-gráfico. 
+- **Race strategy is as relevant as qualifying performance.** The finding that 57.7% of victories occurred without pole position suggests that customer teams should balance investment in qualifying performance with pit stop strategy planning.
 
-- **Expansión global de la Fórmula 1** visible en el mapa geográfico: de concentración europea histórica a presencia creciente en Asia, Oriente Medio y América, tendencia que se intensifica desde 2010. 
+- **High user satisfaction during validation:** 4.6/5 for clarity, 4.8/5 for visual design, and a 100% recommendation rate. Subsequent adjustment: reducing visual density on pages containing multiple charts.
 
-### **Análisis de Resultados** 
+- **Formula 1's global expansion** is visible on the geographical map: from a historically European concentration to an increasing presence in Asia, the Middle East, and the Americas, a trend that has intensified since 2010.
 
-Los resultados obtenidos permiten trazar una narrativa coherente sobre la evolución de la Fórmula 1 en 75 temporadas. La dominancia cíclica de Ferrari, Red Bull y Mercedes es inmediatamente visible en el gráfico de áreas de la Página 3. El análisis de _qualifying_ (Objetivo 3), al cruzar el Dataset 1 con el Dataset 2, revela que existe una correlación positiva entre posición de salida y resultado, pero con dispersión notable: la estrategia de pit stops (Objetivo 4) puede revertir hasta 8 posiciones en circuitos favorables. El mapa geográfico (Objetivo 5) confirma la concentración histórica en Europa y la expansión reciente hacia Oriente Medio y América. En conjunto, **PitWall Analytics** demuestra que los datos abiertos de la F1 permiten generar _insights_ accionables para equipos, medios y plataformas de fantasy racing. 
+### **Results Analysis**
 
-PitWall Analytics _·_ Pontificia Universidad Javeriana _·_ Visualización de Datos _·_ 2026 
+The results provide a coherent narrative of Formula 1's evolution across 75 seasons. The cyclical dominance of Ferrari, Red Bull, and Mercedes is immediately visible in the area chart on Page 3.
 
-**PitWall Analytics — Anexo Ejecutivo** 
+The qualifying analysis (Objective 3), combining Dataset 1 with Dataset 2, reveals a positive correlation between starting position and race result, but with considerable dispersion: pit stop strategy (Objective 4) can reverse up to 8 positions on favorable circuits.
 
-Objetivos de Visualización _·_ Resultados de Validación _·_ Recomendaciones Estratégicas 
+The geographical map (Objective 5) confirms the sport's historical concentration in Europe and its recent expansion into the Middle East and the Americas.
 
-### **Objetivos de Visualización del Proyecto** 
+Overall, **PitWall Analytics** demonstrates that open Formula 1 data can generate actionable insights for teams, media outlets, and fantasy racing platforms.
 
-|**#**|**Objetivo**|**Indicador Principal**|**Datasets**|**Multi-**<br>**fuente**|
+---
+
+PitWall Analytics _·_ Pontificia Universidad Javeriana _·_ Data Visualization _·_ 2026
+
+# **PitWall Analytics — Executive Appendix**
+
+Visualization Objectives _·_ Validation Results _·_ Strategic Recommendations
+
+### **Project Visualization Objectives**
+
+| **#** | **Objective** | **Main Indicator** | **Datasets** | **Multi-source** |
 |---|---|---|---|---|
-|1|**Rendimiento histórico de**<br>**pilotos**|Tasa de conversión pole_→_victoria (42,3 %)|DS1|No|
-|2|**Análisis de constructores**|Índice de fiabilidad por constructor (% carreras finalizadas)<br>|DS1|No|
-|3|**Impacto del qualifying en**|Índice de remontada promedio por circuito|DS1 + DS2|**Sí**|
-||**carrera**||||
-|4|**Estrategia de pit stops**|Correlación pit stops vs. posición final por circuito<br>|DS3|No|
-|5|**Análisis geográfico de vic-**<br>**torias**|Índice de diversidad de ganadores por circuito|DS1 + DS3|**Sí**|
+| 1 | **Historical driver performance** | Pole _→_ win conversion rate (42.3%) | DS1 | No |
+| 2 | **Constructor analysis** | Constructor reliability index (% of races completed) | DS1 | No |
+| 3 | **Impact of qualifying on race results** | Average comeback index by circuit | DS1 + DS2 | **Yes** |
+| 4 | **Pit stop strategy** | Correlation between pit stops and final position by circuit | DS3 | No |
+| 5 | **Geographical analysis of victories** | Winner diversity index by circuit | DS1 + DS3 | **Yes** |
 
+### **User Validation Results**
 
+### **Strategic Recommendations**
 
-### **Resultados de Validación con Usuarios** 
+A structured survey was conducted with five users (classmates, Formula 1 fans, and users with no BI experience). The survey included seven Likert-scale questions (1–5) and one dichotomous question.
 
-### **Recomendaciones Estratégicas** 
+| **Evaluation Aspect** | **Average Score** |
+|---|---:|
+| Clarity of purpose | **4.6 / 5** |
+| Chart interpretability | 3.8 / 5 |
+| Filter usability | 4.2 / 5 |
+| Visual design | **4.8 / 5** |
+| Information usefulness | 4.2 / 5 |
+| Would recommend the tool | **100% Yes** |
 
-Se aplicó una encuesta estructurada a 5 usuarios (compañeros de asignatura, aficionados a la F1 y usuarios sin experiencia en BI) con siete preguntas en escala Likert 1–5 más una dicotómica. 
+#### **Adjustments Made Following User Validation**
 
-|**Aspecto evaluado**|**Promedio**|
-|---|---|
-|Claridad del propósito|**4,6 / 5**|
-|Interpretabilidad de gráficos|3,8 / 5|
-|Usabilidad de filtros|4,2 / 5|
-|Diseño visual|**4,8 / 5**|
-|Utilidad de la información|4,2 / 5|
-|Recomendaría la herramienta|**100 % Sí**|
+- Reduced visual density by removing redundant elements from pages containing multiple charts simultaneously.
+- Reorganized time filters to make it easier to explore specific season ranges.
+- Prioritized the most relevant charts on each page, improving the overall interpretability of the report.
 
+Based on the project's findings, the following recommendations are proposed for PitWall Analytics' customers:
 
+- **For constructor teams:** Investing in pit stop strategy can deliver returns comparable to improvements in qualifying performance. The fact that 57.7% of victories occurred without pole position confirms that races can be won (or lost) in the pit lane.
 
-#### **Ajustes realizados tras la validación:** 
+- **For street circuits** (Monaco, Baku, Las Vegas): The priority should be maximizing qualifying performance, given that the comeback index is structurally negative on these tracks.
 
-- Reducción de densidad visual eliminando elementos redundantes en páginas con múltiples gráficos simultáneos. 
+- **For specialized media outlets:** The winner diversity index by circuit is a powerful storytelling indicator that can enrich historical editorial coverage and provide context for current seasons.
 
-- Reorganización de filtros temporales para facilitar la exploración de rangos de temporadas específicos. 
+- **For fantasy racing platforms:** The pole _→_ win conversion rate (42.3%) and constructor reliability index (22.1% historical mechanical failure rate) are high-value predictive variables for scoring models.
 
-- Priorización de los gráficos más relevantes por página, mejorando la interpretabilidad general del reporte. 
+- **Next steps:** Incorporate 2025 data once available through the Ergast/OpenF1 API and expand the lap time analysis (`lap_times.csv`) to model tire degradation by circuit.
 
-Con base en los hallazgos del proyecto, se formulan las siguientes recomendaciones para los clientes de PitWall Analytics: 
+### **Data Sources and Technologies Used**
 
-- **Para equipos constructores:** invertir en estrategia de pit stops tiene un retorno comparable al de rendimiento de clasificación. El 57,7 % de victorias sin pole confirma que la carrera puede ganarse (o perderse) en el pitlane. 
-
-- **Para circuitos urbanos** (Mónaco, Bakú, Las Vegas): la prioridad debe ser maximizar la clasificación, dado que el índice de remontada es estructuralmente negativo en estas pistas. 
-
-- **Para medios especializados:** el índice de diversidad de ganadores por circuito es un indicador narrativo potente para enriquecer la cobertura editorial histórica y contextualizar temporadas actuales. 
-
-- **Para plataformas de fantasy racing:** la tasa pole _→_ victoria (42,3 %) y el índice de fiabilidad por constructor (22,1 % falla mecánica histórica) son variables predictivas de alto valor para modelos de puntuación. 
-
-- **Próximos pasos:** incorporar datos de 2025 una vez disponibles en Ergast/OpenF1 API, y ampliar el análisis de tiempos de vuelta ( `lap_times.csv` ) para modelar degradación de neumáticos por circuito. 
-
-### **Fuentes de Datos y Tecnologías Utilizadas** 
-
-|**Componente**|**Detalle**|**Propósito en el proyecto**|
+| **Component** | **Details** | **Purpose in the Project** |
 |---|---|---|
-|**Dataset princi-**|_F1 World Championship 1950–_|14 archivos CSV con resultados, pilotos, constructores y circuitos|
-|**pal**|_2024_(Kaggle, rohanrao)||
-|**Herramienta BI**|Microsoft Power BI Desktop|Modelado, ETL (Power Query), DAX y visualización interactiva|
-|**Modelo**<br>**de**|Esquema<br>en<br>Estrella<br>(Star|`results`como tabla de hechos central con 4 dimensiones|
-|**datos**|Schema)||
-|**Fuente de API**|Ergast Motor Racing Data API|Base del dataset Kaggle; permite actualización con temporadas futuras|
-|**Validación**|Google Forms (encuesta a 5 usuar-<br>ios)|Evaluación de claridad, usabilidad y diseño del reporte dinámico|
+| **Main dataset** | _F1 World Championship 1950–2024_ (Kaggle, rohanrao) | 14 CSV files containing race results, drivers, constructors, and circuits |
+| **BI Tool** | Microsoft Power BI Desktop | Data modeling, ETL (Power Query), DAX, and interactive visualization |
+| **Data Model** | Star Schema | `results` as the central fact table with four dimensions |
+| **API Source** | Ergast Motor Racing Data API | Foundation of the Kaggle dataset; enables updates with future seasons |
+| **Validation** | Google Forms (survey of 5 users) | Evaluation of clarity, usability, and dashboard design |
 
+---
 
-
-PitWall Analytics _·_ Pontificia Universidad Javeriana _·_ Visualización de Datos _·_ 2026 
-
+PitWall Analytics _·_ Pontificia Universidad Javeriana _·_ Data Visualization _·_ 2026
