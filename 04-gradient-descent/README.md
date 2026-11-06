@@ -1,32 +1,32 @@
-# Descenso del gradiente para regresión lineal
+# Gradient Descent for Linear Regression
 
-## Descripción
-Este notebook implementa desde cero el algoritmo de descenso del gradiente para ajustar un modelo de regresión lineal utilizando un conjunto de datos de valoración inmobiliaria.
+## Description
+This notebook implements the gradient descent algorithm from scratch to fit a linear regression model using a real estate valuation dataset.
 
-## Contenido y procedimiento
-1. Importación de NumPy, pandas, Matplotlib, `StandardScaler` e `ipywidgets`.
-2. Lectura del archivo Excel `Real_estate_valuation_data_set.xlsx`.
-3. Selección de las variables predictoras mediante las columnas desde la segunda hasta la penúltima (`data.iloc[:, 1:-1]`) y de la variable objetivo mediante la última columna.
-4. Estandarización de las variables predictoras con `StandardScaler`.
-5. Implementación de la función de costo basada en el error cuadrático medio dividido entre `2m`.
-6. Implementación de `gradient_descent`, que inicializa los parámetros en cero, agrega una columna de unos para el término independiente y actualiza los parámetros durante un número definido de iteraciones.
-7. Visualización interactiva de la evolución del costo al variar la tasa de aprendizaje (`alpha`) mediante un control deslizante de `ipywidgets`. La ejecución configurada utiliza 100 iteraciones por valor seleccionado.
+## Contents and Methodology
+1. Importing NumPy, pandas, Matplotlib, `StandardScaler`, and `ipywidgets`.
+2. Reading the Excel file `Real_estate_valuation_data_set.xlsx`.
+3. Selecting the predictor variables using the columns from the second to the penultimate (`data.iloc[:, 1:-1]`) and the target variable using the last column.
+4. Standardizing the predictor variables with `StandardScaler`.
+5. Implementing the cost function based on the mean squared error divided by `2m`.
+6. Implementing `gradient_descent`, which initializes the parameters to zero, adds a column of ones for the intercept term, and updates the parameters over a specified number of iterations.
+7. Interactive visualization of cost evolution while varying the learning rate (`alpha`) using an `ipywidgets` slider. The configured execution uses 100 iterations for each selected value.
 
-## Datos de entrada
-Requiere el archivo Excel `Real_estate_valuation_data_set.xlsx` en el directorio de trabajo actual de Jupyter. El archivo se encuentra en la carpeta `data`.
+## Input Data
+Requires the Excel file `Real_estate_valuation_data_set.xlsx` in the current Jupyter working directory. The file is located in the `data` folder.
 
-## Bibliotecas
+## Libraries
 - NumPy
 - pandas
 - Matplotlib
 - scikit-learn (`StandardScaler`)
 - ipywidgets
 
-## Ejecución
-1. Instalar las dependencias.
-2. Colocar el archivo Excel en el directorio de trabajo desde el que se ejecuta Jupyter, o modificar la ruta de lectura.
-3. Ejecutar las celdas en orden.
-4. Utilizar el deslizador para cambiar `alpha` y observar la curva de costo y los parámetros finales.
+## Execution
+1. Install the required dependencies.
+2. Place the Excel file in the working directory from which Jupyter is running, or modify the file path.
+3. Run the cells in order.
+4. Use the slider to change `alpha` and observe the cost curve and final parameter values.
 
-## Consideraciones
-Solo se estandarizan las variables predictoras; la variable objetivo permanece en su escala original. La tasa de aprendizaje debe elegirse de forma que el costo disminuya y el algoritmo se mantenga estable. El control interactivo requiere que `ipywidgets` esté correctamente habilitado en el entorno de Jupyter. El notebook no implementa una división entrenamiento/prueba: el descenso del gradiente se ejecuta sobre todos los registros cargados.
+## Considerations
+Only the predictor variables are standardized; the target variable remains on its original scale. The learning rate must be selected so that the cost decreases and the algorithm remains stable. The interactive control requires `ipywidgets` to be properly enabled in the Jupyter environment. The notebook does not implement a train/test split: gradient descent is performed using all loaded records.
