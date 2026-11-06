@@ -1,91 +1,120 @@
-# Ejercicio 1 — Clasificación lineal
+# Exercise 1 — Linear Classification
 
-## Descripción
-Este notebook desarrolla un ejemplo de clasificación binaria con un conjunto de datos sintético de dos dimensiones. Genera dos clases mediante distribuciones normales multivariadas, con medias simétricas respecto al origen, y compara dos enfoques de clasificación.
+## Description
 
-## Contenido y procedimiento
-1. Generación de 300 observaciones por clase con una matriz de covarianza compartida.
-2. Comprobación de que la media global de los datos sea aproximadamente cero.
-3. Entrenamiento de `LogisticRegression` de scikit-learn.
-4. Implementación de un clasificador personalizado que calcula `theta` como el promedio de los datos de la clase 1 y aplica la función sigmoide a `X @ theta`.
-5. Comparación de ambos clasificadores mediante accuracy, matrices de confusión y reportes de clasificación.
-6. Visualización de las regiones de decisión y de los puntos de ambas clases.
+This notebook develops a binary classification example using a synthetic two-dimensional dataset. It generates two classes from multivariate normal distributions, with means symmetric around the origin, and compares two classification approaches.
 
-## Datos de entrada
-No requiere archivos externos: el conjunto de datos se genera dentro del notebook usando NumPy.
+## Content and Procedure
 
-## Bibliotecas
+1. Generation of 300 observations per class using a shared covariance matrix.
+2. Verification that the overall mean of the data is approximately zero.
+3. Training of a `LogisticRegression` model from scikit-learn.
+4. Implementation of a custom classifier that calculates `theta` as the mean of the class 1 data points and applies the sigmoid function to `X @ theta`.
+5. Comparison of both classifiers using accuracy, confusion matrices, and classification reports.
+6. Visualization of decision regions and data points from both classes.
+
+## Input Data
+
+No external files are required: the dataset is generated directly within the notebook using NumPy.
+
+## Libraries
+
 - NumPy
 - pandas
 - Matplotlib
 - scikit-learn
 
-## Ejecución
-Abrir el archivo en Jupyter Notebook o JupyterLab y ejecutar las celdas en orden. Las métricas se calculan sobre el mismo conjunto generado y utilizado para entrenar; por tanto, el accuracy mostrado es de entrenamiento, no una evaluación sobre datos independientes.
+## Execution
 
-## Alcance y consideración
-El clasificador personalizado no optimiza una función de pérdida ni aprende un intercepto mediante un algoritmo de entrenamiento. Usa directamente el promedio de la clase 1 como vector de parámetros. El notebook permite contrastar esa regla heurística con la regresión logística de scikit-learn; no debe interpretarse como una implementación equivalente del entrenamiento de regresión logística.
+Open the file in Jupyter Notebook or JupyterLab and run the cells in order. The metrics are calculated on the same generated dataset used for training; therefore, the reported accuracy represents training accuracy, not evaluation on independent data.
 
-# Ejercicio 2 — Clasificación de dígitos (MNIST o `digits`)
+## Scope and Considerations
 
-## Descripción
-Este notebook compara métodos de clasificación para reconocer dígitos escritos a mano. Intenta utilizar MNIST mediante `fetch_openml`; si la descarga falla, utiliza el conjunto `digits` incluido en scikit-learn.
+The custom classifier does not optimize a loss function or learn an intercept through a training algorithm. Instead, it directly uses the mean of class 1 as its parameter vector. The notebook allows this heuristic rule to be compared with scikit-learn's logistic regression; it should not be interpreted as an equivalent implementation of logistic regression training.
 
-## Contenido y procedimiento
-1. Carga de MNIST desde OpenML o selección alternativa de `sklearn.datasets.load_digits`.
-2. Normalización inicial de los valores de píxel y selección aleatoria de hasta 3.000 observaciones para reducir el tiempo de ejecución.
-3. Estandarización de las características con `StandardScaler`.
-4. División estratificada en entrenamiento (75 %) y prueba (25 %).
-5. Evaluación de K-Nearest Neighbors (KNN) para `k = 1, 3, 5, 7`.
-6. Entrenamiento y evaluación de regresión logística One-vs-Rest y multinomial.
-7. Visualización de los coeficientes de los clasificadores One-vs-Rest como mapas de calor cuando la cantidad de características permite reconstruir una imagen cuadrada.
-8. Reporte de clasificación para el modelo multinomial.
+---
 
-## Datos de entrada
-- Preferido: MNIST descargado desde OpenML (`mnist_784`).
-- Alternativa: conjunto `digits` incluido en scikit-learn, utilizado automáticamente si no se puede cargar MNIST.
+# Exercise 2 — Digit Classification (MNIST or `digits`)
 
-La ejecución puede requerir conexión a Internet para descargar MNIST. El conjunto alternativo `digits` tiene imágenes de 8 × 8 píxeles, mientras que MNIST utiliza imágenes de 28 × 28; por eso los resultados y la visualización de coeficientes dependen del conjunto que se haya cargado.
+## Description
 
-## Bibliotecas
+This notebook compares classification methods for recognizing handwritten digits. It attempts to use MNIST through `fetch_openml`; if the download fails, it uses the `digits` dataset included in scikit-learn.
+
+## Content and Procedure
+
+1. Loading MNIST from OpenML or selecting the alternative `sklearn.datasets.load_digits` dataset.
+2. Initial normalization of pixel values and random selection of up to 3,000 observations to reduce execution time.
+3. Feature standardization using `StandardScaler`.
+4. Stratified split into training (75%) and testing (25%) sets.
+5. Evaluation of K-Nearest Neighbors (KNN) for `k = 1, 3, 5, 7`.
+6. Training and evaluation of One-vs-Rest and multinomial logistic regression.
+7. Visualization of One-vs-Rest classifier coefficients as heatmaps when the number of features allows reconstruction of a square image.
+8. Classification report for the multinomial model.
+
+## Input Data
+
+- Preferred: MNIST downloaded from OpenML (`mnist_784`).
+- Alternative: the `digits` dataset included in scikit-learn, automatically used if MNIST cannot be loaded.
+
+Execution may require an Internet connection to download MNIST. The alternative `digits` dataset contains 8 × 8 pixel images, while MNIST uses 28 × 28 pixel images; therefore, results and coefficient visualizations depend on which dataset is loaded.
+
+## Libraries
+
 - NumPy
 - Matplotlib
 - scikit-learn (`datasets`, `model_selection`, `neighbors`, `linear_model`, `multiclass`, `preprocessing`, `metrics`)
 
-## Ejecución
-Abrir el notebook en Jupyter Notebook o JupyterLab y ejecutar todas las celdas en orden. Revisar el mensaje `Dataset usado` para confirmar si se trabajó con MNIST o con `digits`.
+## Execution
 
-## Consideraciones
-La muestra de hasta 3.000 imágenes se selecciona antes de la división de entrenamiento y prueba. El `StandardScaler` se ajusta sobre esa muestra completa antes del `train_test_split`; para una evaluación metodológicamente más estricta, el escalador debería ajustarse únicamente con `X_train` y luego aplicarse a `X_test` para evitar fuga de información. Los mapas de calor se generan solo cuando el número de características es un cuadrado perfecto.
+Open the notebook in Jupyter Notebook or JupyterLab and run all cells in order. Check the `Dataset used` message to confirm whether MNIST or `digits` was used.
 
-# Ejercicio 3 — Regresión lineal
+## Considerations
 
-## Descripción
-Este notebook realiza un ejercicio de regresión con el archivo `Regression_Housing_Synthetic.csv`. Incluye inspección descriptiva de los datos, entrenamiento de modelos lineales y evaluación de sus predicciones.
+The sample of up to 3,000 images is selected before splitting the data into training and testing sets. `StandardScaler` is fitted on the entire sample before `train_test_split`; for a stricter methodological evaluation, the scaler should be fitted only on `X_train` and then applied to `X_test` to prevent data leakage.
 
-## Contenido y procedimiento
-1. Lectura del archivo CSV y visualización de las primeras filas y estadísticas descriptivas.
-2. Definición de las variables predictoras como todas las columnas excepto la última; la última columna se toma como variable objetivo.
-3. División de los datos en entrenamiento (75 %) y prueba (25 %), con `random_state=0`.
-4. Si existe una sola variable predictora, ajuste de una regresión lineal simple, cálculo de MSE, MAE y R², y gráfica de los datos con la recta ajustada.
-5. Si hay varias variables predictoras, ajuste de una regresión lineal multivariable y de un modelo con características polinómicas de grado 2.
-6. Comparación de modelos mediante MSE y R², selección del modelo con mayor R² y visualización de sus residuos.
-7. Presentación de coeficientes del modelo seleccionado (o de los primeros 20 coeficientes polinómicos, ordenados por magnitud absoluta).
+Heatmaps are generated only when the number of features is a perfect square.
 
-## Datos de entrada
-Requiere el archivo `Regression_Housing_Synthetic.csv`. El notebook contiene actualmente una ruta absoluta específica de un equipo:
-`/Users/llara/Documents/IA/Proyecto 1/Regression_Housing_Synthetic.csv`, el e+archivo se encuentra en la carpeta `data`.
+---
 
-Esa ruta debe cambiarse por la ubicación real del CSV en el equipo donde se ejecute. Se recomienda guardar el CSV junto al notebook y utilizar una ruta relativa, por ejemplo `Regression_Housing_Synthetic.csv`.
+# Exercise 3 — Linear Regression
 
-## Bibliotecas
+## Description
+
+This notebook performs a regression exercise using the `Regression_Housing_Synthetic.csv` file. It includes descriptive data inspection, linear model training, and prediction evaluation.
+
+## Content and Procedure
+
+1. Reading the CSV file and displaying the first rows and descriptive statistics.
+2. Defining the predictor variables as all columns except the last one; the last column is used as the target variable.
+3. Splitting the data into training (75%) and testing (25%) sets, with `random_state=0`.
+4. If there is only one predictor variable, fitting a simple linear regression model, calculating MSE, MAE, and R², and plotting the data with the fitted regression line.
+5. If there are multiple predictor variables, fitting a multivariable linear regression model and a model with degree-2 polynomial features.
+6. Comparing models using MSE and R², selecting the model with the highest R², and visualizing its residuals.
+7. Presenting the coefficients of the selected model (or the first 20 polynomial coefficients, sorted by absolute magnitude).
+
+## Input Data
+
+Requires the `Regression_Housing_Synthetic.csv` file. The notebook currently contains an absolute path specific to one computer:
+
+`/Users/llara/Documents/IA/Proyecto 1/Regression_Housing_Synthetic.csv`
+
+The file is located in the `data` folder.
+
+This path must be changed to the actual location of the CSV file on the computer where the notebook is executed. It is recommended to store the CSV alongside the notebook and use a relative path, for example:
+
+`Regression_Housing_Synthetic.csv`
+
+## Libraries
+
 - pandas
 - NumPy
 - Matplotlib
-- scikit-learn (`LinearRegression`, métricas, `train_test_split`, `PolynomialFeatures`)
+- scikit-learn (`LinearRegression`, metrics, `train_test_split`, `PolynomialFeatures`)
 
-## Ejecución
-Ubicar el CSV en la ruta configurada dentro del notebook, verificar que la última columna sea la variable objetivo y ejecutar las celdas en orden.
+## Execution
 
-## Consideraciones
-La selección de la variable objetivo depende del orden de las columnas: el código considera objetivo la última columna. En el caso multivariable, la selección del modelo se realiza comparando R² en el conjunto de prueba.
+Place the CSV file in the path configured within the notebook, verify that the last column is the target variable, and run the cells in order.
+
+## Considerations
+
+The target variable is selected based on column order: the code considers the last column to be the target. In the multivariable case, model selection is performed by comparing R² on the test set.
