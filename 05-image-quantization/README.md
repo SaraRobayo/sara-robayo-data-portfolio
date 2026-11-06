@@ -1,39 +1,41 @@
-# Cuantización de imágenes
+# Image Quantization
 
-## Descripción
-Este notebook reduce la cantidad de colores presentes en imágenes RGB mediante técnicas de clustering. El objetivo es representar cada imagen con una paleta limitada y comparar la reconstrucción con la imagen original mediante el error cuadrático medio (MSE).
+## Description
+This notebook reduces the number of colors in RGB images using clustering techniques. The goal is to represent each image with a limited color palette and compare the reconstruction with the original image using the mean squared error (MSE).
 
-## Contenido y procedimiento
-1. Búsqueda de archivos `.jpg` y `.png` ubicados en el directorio de trabajo actual (`./`).
-2. Carga y visualización de las imágenes encontradas.
-3. Definición de la función `cuantizar_exact_k`, que:
-   - convierte los píxeles a vectores RGB;
-   - toma una muestra aleatoria de píxeles para ajustar el clustering cuando la imagen es grande;
-   - admite `KMeans` o `AgglomerativeClustering`;
-   - asigna todos los píxeles al centro más cercano por bloques para controlar el uso de memoria;
-   - reconstruye la imagen usando los colores representativos;
-   - calcula el MSE entre los píxeles originales y los colores asignados.
-4. Aplicación de la cuantización a cada imagen encontrada.
-5. Comparación visual entre original y cuantizada, y presentación del MSE por imagen.
+## Contents and Methodology
+1. Search for `.jpg` and `.png` files located in the current working directory (`./`).
+2. Load and display the images found.
+3. Define the `cuantizar_exact_k` function, which:
+   - Converts pixels into RGB vectors.
+   - Takes a random sample of pixels to fit the clustering algorithm when the image is large.
+   - Supports either `KMeans` or `AgglomerativeClustering`.
+   - Assigns all pixels to the nearest center in batches to control memory usage.
+   - Reconstructs the image using the representative colors.
+   - Calculates the MSE between the original pixels and their assigned colors.
+4. Apply quantization to each image found.
+5. Visually compare the original and quantized images and display the MSE for each image.
 
-## Configuración actual
-En la celda de ejecución se utiliza `k = 9` colores y `metodo = "kmeans"`. La función permite modificar esos parámetros y admite también `agglomerative`.
+## Current Configuration
+The execution cell uses `k = 9` colors and `metodo = "kmeans"`. The function allows these parameters to be modified and also supports `agglomerative`.
 
-## Datos de entrada
-Se deben colocar una o más imágenes `.jpg` o `.png` en la misma carpeta desde la que se ejecuta el notebook. La búsqueda no es recursiva: no incluye imágenes que estén únicamente en subcarpetas. Las imagenes se encuentran en la carpeta ´data´, se deben pasar a la misma carpeta de la que se ejecuta el notebook.
+## Input Data
+One or more `.jpg` or `.png` images must be placed in the same folder from which the notebook is executed. The search is not recursive: it does not include images located only in subfolders.
 
-## Bibliotecas
+The images are currently stored in the `data` folder and must be moved to the same directory from which the notebook is executed.
+
+## Libraries
 - Python
 - NumPy
 - Pillow (`PIL`)
 - Matplotlib
 - scikit-learn (`KMeans`, `AgglomerativeClustering`, `pairwise_distances_argmin`, `mean_squared_error`)
 
-## Ejecución
-1. Instalar las bibliotecas necesarias.
-2. Guardar las imágenes de entrada junto al notebook o en el directorio de trabajo desde el que se abrirá Jupyter.
-3. Ejecutar las celdas en orden.
-4. Revisar las imágenes reconstruidas y los valores de MSE.
+## Execution
+1. Install the required libraries.
+2. Save the input images alongside the notebook or in the working directory from which Jupyter will be launched.
+3. Run the cells in order.
+4. Review the reconstructed images and their MSE values.
 
-## Consideraciones
-El MSE mide la diferencia numérica entre los valores RGB originales y los colores reconstruidos; un valor menor representa menor error de reconstrucción. Para `KMeans`, los centroides se obtienen del subconjunto de píxeles muestreado cuando la imagen supera `sample_size`. En el caso aglomerativo, los centroides se calculan como la media de los píxeles de cada cluster de esa muestra. El resultado depende de la muestra aleatoria y de los parámetros configurados.
+## Considerations
+The MSE measures the numerical difference between the original RGB values and the reconstructed colors; a lower value indicates a smaller reconstruction error. For `KMeans`, the centroids are obtained from the sampled subset of pixels when the image exceeds `sample_size`. In the agglomerative case, the centroids are calculated as the mean of the pixels belonging to each cluster in that sample. The result depends on the random sample and the configured parameters.
